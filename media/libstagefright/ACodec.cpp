@@ -442,13 +442,6 @@ status_t ACodec::allocateOutputBuffersFromNativeWindow() {
         return err;
     }
 
-#ifdef QCOM_HARDWARE
-    int format = (def.format.video.eColorFormat == (OMX_COLOR_FORMATTYPE)QOMX_COLOR_FormatYUV420PackedSemiPlanar64x32Tile2m8ka)?
-                 HAL_PIXEL_FORMAT_YCbCr_420_SP_TILED : def.format.video.eColorFormat;
-    if(def.format.video.eColorFormat == OMX_QCOM_COLOR_FormatYVU420SemiPlanar)
-        format = HAL_PIXEL_FORMAT_YCrCb_420_SP;
-#endif
-
 #ifdef SAMSUNG_CODEC_SUPPORT
     OMX_COLOR_FORMATTYPE eNativeColorFormat = def.format.video.eColorFormat;
     setNativeWindowColorFormat(eNativeColorFormat);
@@ -463,7 +456,6 @@ status_t ACodec::allocateOutputBuffersFromNativeWindow() {
             def.format.video.nFrameWidth,
             def.format.video.nFrameHeight,
             def.format.video.eColorFormat);
-#endif
 #endif
 
 
