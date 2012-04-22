@@ -235,7 +235,7 @@ public class PhoneStatusBar extends StatusBar {
     int[] mAbsPos = new int[2];
     Runnable mPostCollapseCleanup = null;
 
-    boolean mQuickTogglesHideAfterCollapse = true;
+    boolean mQuickTogglesHideAfterCollapse = false;
 
     // for disabling the status bar
     int mDisabled = 0;
@@ -2309,7 +2309,7 @@ public class PhoneStatusBar extends StatusBar {
         }
     }
 
-    boolean mDropdownSettingsDefualtBehavior = false;
+    boolean mDropdownSettingsDefualtBehavior = true;
     
     private void updateSettings() {
         // Slog.i(TAG, "updated settings values");
