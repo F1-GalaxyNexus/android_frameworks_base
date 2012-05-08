@@ -2101,10 +2101,17 @@ public class PowerManagerService extends IPowerManager.Stub
             mLcdLight.setBrightness(value, brightnessMode);
         }
         if ((mask & BUTTON_BRIGHT_BIT) != 0) {
-            mButtonLight.setBrightness(value);
+            // Use sensor-determined brightness values when the button (or keyboard)
+            // light is on, since users may want to specify a custom brightness setting
+            // that disables the button (or keyboard) backlight entirely in low-ambient
+            // light situations.
+            mButtonLight.setBrightness(mLightSensorButtonBrightness >= 0 && value > 0 ?
+                                       mLightSensorButtonBrightness : value);
+
         }
         if ((mask & KEYBOARD_BRIGHT_BIT) != 0) {
-            mKeyboardLight.setBrightness(value);
+            mKeyboardLight.setBrightness(mLightSensorKeyboardBrightness >= 0 && value > 0 ?
+                                         mLightSensorKeyboardBrightness : value);
         }
     }
 
@@ -2544,10 +2551,10 @@ public class PowerManagerService extends IPowerManager.Stub
                                 INITIAL_SCREEN_BRIGHTNESS, (int)mScreenBrightness.curValue);
                     }
                 }
-                if (mButtonBrightnessOverride < 0) {
+                if (mButtonBrightnessOverride < 0 && mAutoBrightnessButtonKeyboard) {
                     mButtonLight.setBrightness(buttonValue);
                 }
-                if (mButtonBrightnessOverride < 0 || !mKeyboardVisible) {
+                if ((mButtonBrightnessOverride < 0 || !mKeyboardVisible) && mAutoBrightnessButtonKeyboard) {
                     mKeyboardLight.setBrightness(keyboardValue);
                 }
             }
