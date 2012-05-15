@@ -86,6 +86,11 @@ const char CameraParameters::KEY_METERING[] = "metering";
 const char CameraParameters::KEY_WDR[] = "wdr";
 const char CameraParameters::KEY_ANTI_SHAKE_MODE[] = "anti-shake";
 #endif
+#ifdef SAMSUNG_CAMERA_HARDWARE
+const char CameraParameters::KEY_METERING[] = "metering";
+const char CameraParameters::KEY_WDR[] = "wdr";
+const char CameraParameters::KEY_ANTI_SHAKE_MODE[] = "anti-shake";
+#endif
 const char CameraParameters::KEY_VIDEO_SIZE[] = "video-size";
 const char CameraParameters::KEY_SUPPORTED_VIDEO_SIZES[] = "video-size-values";
 const char CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO[] = "preferred-preview-size-for-video";
