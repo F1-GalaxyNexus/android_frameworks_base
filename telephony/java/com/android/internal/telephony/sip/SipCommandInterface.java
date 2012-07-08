@@ -412,4 +412,16 @@ class SipCommandInterface extends BaseCommands implements CommandsInterface {
 
     public void requestIsimAuthentication(String nonce, Message response) {
     }
+
+    /**
+     * added samsung part to command interface
+     * @param h
+     * @param what
+     * @param obj
+     */
+    public void setOnCatSendSmsResult(Handler h, int what, Object obj) {
+    }
+
+    public void unSetOnCatSendSmsResult(Handler h) {
+    }
 }

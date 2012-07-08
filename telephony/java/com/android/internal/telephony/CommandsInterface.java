@@ -1641,4 +1641,12 @@ public interface CommandsInterface {
      * @param response a callback message with the String response in the obj field
      */
     public void requestIsimAuthentication(String nonce, Message response);
+
+    /**
+     * @hide
+     * samsung stk service implementation - set up registrant for sending
+     * sms send result from modem(RIL) to catService
+     */
+    void setOnCatSendSmsResult(Handler h, int what, Object obj);
+    void unSetOnCatSendSmsResult(Handler h);
 }
